@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>SketchTiler Chat</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 720px; margin: 24px auto; }
+      #log { white-space: pre-wrap; border: 1px solid #ddd; padding: 12px; border-radius: 8px; min-height: 200px; }
+      .row { display: flex; gap: 8px; margin: 8px 0; }
+      .row > * { flex: 1; }
+    </style>
+  </head>
+  <body>
+    <h1>SketchTiler × ChatGPT</h1>
+
+    <div id="log">👋 Ready.</div>
+
+    <div class="row">
+      <input id="text" placeholder="Type a message…" />
+      <button id="send">Send</button>
+    </div>
+
+    <div class="row">
+      <input id="img" type="file" accept="image/*"/>
+      <button id="sendImg">Send + Image</button>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
