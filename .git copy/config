@@ -1,0 +1,34 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "origin"]
+	url = https://github.com/Justin-Lam/CMPM118-Sketch-to-Tilemap-Application
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main
+	vscode-merge-base = origin/main
+[branch "sketch-simple"]
+	remote = origin
+	merge = refs/heads/sketch-simple
+	vscode-merge-base = origin/sketch-simple
+[branch "sketch-code-cleanup"]
+	vscode-merge-base = origin/main
+	remote = origin
+	merge = refs/heads/sketch-code-cleanup
+[branch "overlap-handling"]
+	vscode-merge-base = origin/main
+	remote = origin
+	merge = refs/heads/overlap-handling
+[branch "overlap-handling--structure-hierarchy"]
+	remote = origin
+	merge = refs/heads/overlap-handling--structure-hierarchy
+	vscode-merge-base = origin/overlap-handling--structure-hierarchy
+[branch "exports"]
+	vscode-merge-base = origin/main
+	remote = origin
+	merge = refs/heads/exports
