@@ -4,26 +4,21 @@
     <meta charset="utf-8"/>
     <title>SketchTiler Studio</title>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-
     <style>
-      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 0; }
-      .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 16px; }
-      h2 { margin: 12px 0; }
-      .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px; background: #fff; }
-      .row { display: flex; gap: 8px; margin: 8px 0; }
-      .row > * { flex: 1; }
-      textarea { width: 100%; height: 120px; font-family: ui-monospace, Menlo, monospace; }
-      #preview { border: 1px solid #ddd; border-radius:10px; padding:12px; min-height: 260px; background: #fff; overflow:auto; }
-      #raw { display:none; width:100%; height:260px; }
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; }
+      .wrap { display:grid; grid-template-columns: 1fr 1fr; gap:16px; padding:16px; }
+      .card { border:1px solid #e5e7eb; border-radius:12px; padding:12px; background:#fff; }
+      .row { display:flex; gap:8px; margin:8px 0; }
+      .row > * { flex:1; }
       .toolbar { display:flex; gap:8px; align-items:center; margin:8px 0; }
       .tab { padding:6px 10px; border:1px solid #ddd; border-radius:6px; cursor:pointer; }
-      .tab.active { background:#111;color:#fff;border-color:#111; }
+      .tab.active { background:#111; color:#fff; border-color:#111; }
+      #preview { border:1px solid #ddd; border-radius:10px; padding:12px; min-height:260px; background:#fff; overflow:auto; }
+      #raw { display:none; width:100%; height:260px; }
       .muted { color:#6b7280; font-size:12px; }
-      canvas { width: 100%; background: #fafafa; border:1px solid #e5e7eb; border-radius:10px; }
+      canvas { width:100%; background:#fafafa; border:1px solid #e5e7eb; border-radius:10px; }
       .small { font-size:12px; color:#6b7280; }
     </style>
-
-    <!-- Markdown pipeline -->
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
     <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11/styles/github.min.css">
@@ -31,11 +26,11 @@
   </head>
   <body>
     <div class="wrap">
-      <!-- LEFT: Chat -->
+      <!-- LEFT: Chat (single input) -->
       <div class="card">
         <h2>Chat</h2>
         <div class="row">
-          <input id="text" placeholder="Type a message…" />
+          <input id="text" placeholder="Ask anything… or say 'generate a 12x8 map with a 3x3 forest at (2,2)'" />
           <button id="send">Send</button>
         </div>
         <div class="row">
@@ -69,20 +64,21 @@
         <pre id="filelog" class="muted">(no files yet)</pre>
       </div>
 
-      <!-- RIGHT: Map generator -->
+      <!-- RIGHT: Map generator (prompt -> canvas) -->
       <div class="card">
         <h2>Map Generator</h2>
         <div class="row">
-          <textarea id="mapPrompt" placeholder="Describe the map to generate… e.g. '10x8 grass, a 3x3 tree cluster at (2,2), a castle at center'"></textarea>
+          <textarea id="mapPrompt" placeholder="Describe the map… e.g. '12x8 grass; 3x3 trees at (2,2); a 2x2 house at center'"></textarea>
         </div>
         <div class="row">
           <button id="loadTileset">Load Tileset</button>
           <button id="genMap">Generate Map</button>
         </div>
         <canvas id="mapCanvas" width="640" height="480"></canvas>
-        <div class="small" id="mapInfo"></div>
+        <div class="small" id="mapInfo">No map rendered yet.</div>
       </div>
-    </div>
+
+
 
     <script src="main.js"></script>
   </body>

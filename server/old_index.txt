@@ -286,6 +286,7 @@ app.post("/api/memory/ingest-tileset", async (req, res) => {
     res.status(500).json({ error: String(e) });
   }
 });
+
 // --- Generate a map from free-form text; returns strict JSON the UI can render ---
 app.post("/api/map/generate", async (req, res) => {
   try {
