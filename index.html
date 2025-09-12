@@ -44,27 +44,72 @@
           <button id="export-sketch-button" class="button is-dark" disabled="true">Export sketch</button>
         </div>
       </div>
-      <div id="instructions" class="content">
-        <h2 class="title is-2">SketchTiler - The sketch to tilemap application</h2>
-        
-        <h3 class="subtitle is-4">Instructions:</h3>
-        <ul>
-          <li>The "House" and "Forest" buttons are structure pens. To draw a house, use the house pen, etc.</li>
-          <li>The “Normalize Shapes” toggle automatically interprets your strokes into the shape it most resembles.</li>
-          <li>Press “Clear” to completely wipe the canvas.</li>
-          <li>Press “Generate” to have a tilemap generated from your sketch. It will take some time.</li>
-          <li>You can still draw new structures after you've pressed Generate, however your existing map will be re-generated and look different.</li>
-          <li>Structures generated from your sketches will have full opacity, whereas background suggestions will be partially transparent.</li>
-        </ul>
-        
-        <h3>Jankiness you'll unfortunately have to deal with for now:</h3>
-        <ul>
-          <li>You can draw structures using multiple strokes, however, strokes belonging to the same structure should be close to each other (or else they might be interpreted as multiple structures).</li>
-          <li>If you encounter an error when generating, give it a few more tries before giving up</li>
-        </ul>
+      
+      <!-- GPT -->
+      <div id="GPT">
+        <!-- Markdown pipeline -->
+        <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11/styles/github.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11/highlight.min.js"></script>
+
+        <div class="wrap">
+          <!-- LEFT: Chat -->
+          <div class="card">
+            <h2>Chat</h2>
+            <div class="row">
+              <input id="text" placeholder="Type a message…" />
+              <button id="send">Send</button>
+            </div>
+            <div class="row">
+              <input id="img" type="file" accept="image/*">
+              <button id="sendImg">Send + Image</button>
+            </div>
+            <div class="toolbar">
+              <div id="tabPreview" class="tab active">Preview</div>
+              <div id="tabRaw" class="tab">Raw</div>
+              <button id="copyBtn" class="tab">Copy</button>
+              <span id="status" class="muted">Ready.</span>
+            </div>
+            <div id="preview"></div>
+            <textarea id="raw" readonly></textarea>
+
+            <h3>Project Memory</h3>
+            <div class="row">
+              <input id="note" placeholder="Add a project rule…"/>
+              <button id="addNote">Save Note</button>
+            </div>
+            <pre id="memlog" class="muted">(no memory yet)</pre>
+
+            <h3>Attach files</h3>
+            <div class="row">
+              <input id="files" type="file" multiple />
+            </div>
+            <div class="row">
+              <input id="uploadNote" placeholder="Optional note…"/>
+              <button id="uploadBtn">Upload & Memorize</button>
+            </div>
+            <pre id="filelog" class="muted">(no files yet)</pre>
+          </div>
+
+          <!-- RIGHT: Map generator 
+          <div class="card">
+            <h2>Map Generator</h2>
+            <div class="row">
+              <textarea id="mapPrompt" placeholder="Describe the map to generate… e.g. '10x8 grass, a 3x3 tree cluster at (2,2), a castle at center'"></textarea>
+            </div>
+            <div class="row">
+              <button id="loadTileset">Load Tileset</button>
+              <button id="genMap">Generate Map</button>
+            </div>
+            <canvas id="mapCanvas" width="640" height="480"></canvas>
+            <div class="small" id="mapInfo"></div>
+          </div>
+          -->
+        </div>
+
       </div>
-    </div>
-    
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
